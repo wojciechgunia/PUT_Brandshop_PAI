@@ -1,0 +1,22 @@
+<div class="quantity-control-wrapper">
+  <button
+    class="rounded-button"
+    style="border-radius: 6px 0 0 6px"
+    (click)="decrement()"
+  >
+    -
+  </button>
+  <input
+    type="text"
+    [formControl]="quantityControl"
+    class="quantity-control"
+    appInputOnlyNumber
+  />
+  <button
+    class="rounded-button"
+    style="border-radius: 0 6px 6px 0"
+    (click)="increment()"
+  >
+    +
+  </button>
+</div>

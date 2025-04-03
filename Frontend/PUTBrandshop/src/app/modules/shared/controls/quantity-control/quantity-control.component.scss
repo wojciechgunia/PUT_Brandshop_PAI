@@ -1,0 +1,24 @@
+.quantity-control-wrapper {
+  width: 180px;
+  display: flex;
+  justify-content: space-between;
+
+  .rounded-button {
+    width: 46px;
+    height: 46px;
+    background-color: var(--primary-color);
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+    font-size: 1.8rem;
+  }
+  .quantity-control {
+    border: #999999 solid1px;
+    text-align: center;
+    width: 100px;
+    padding: 3px 5px;
+  }
+}

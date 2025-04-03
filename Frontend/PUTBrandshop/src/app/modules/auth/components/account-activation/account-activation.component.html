@@ -1,0 +1,22 @@
+<div>
+  <p *ngIf="!errorMsg">Trwa aktywacja konta! Proszę czekać</p>
+
+  <div
+    class="alert alert-warning alert-dismissible fade show mt-2"
+    role="'alert"
+    *ngIf="errorMsg"
+  >
+    {{ errorMsg }}
+  </div>
+
+  <span
+    ><button
+      mat-raised-button
+      color="primary"
+      type="button"
+      routerLink="/logowanie"
+    >
+      Przejdź do logowania
+    </button></span
+  >
+</div>

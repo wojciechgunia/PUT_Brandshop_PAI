@@ -1,0 +1,24 @@
+.prefix {
+  width: 28% !important;
+}
+
+.number {
+  margin-left: 5px;
+  width: calc(72% - 5px) !important;
+}
+
+.control-phone-cont {
+  display: flex;
+  width: 100% !important;
+  flex-wrap: wrap;
+}
+
+.error {
+  width: 100%;
+  margin-top: 0;
+  padding-top: 0;
+  font-size: 0.8rem;
+  position: relative;
+  top: -18px;
+  left: 5px;
+}

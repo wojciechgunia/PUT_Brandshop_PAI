@@ -1,0 +1,27 @@
+<div class="control-phone-cont">
+  <mat-form-field class="prefix" appearance="outline">
+    <mat-label>Kierunkowy</mat-label>
+    <input matInput [formControl]="numberPrefixControl" placeholder="+48" />
+  </mat-form-field>
+  <mat-form-field class="number" appearance="outline">
+    <mat-label>Numer telefonu</mat-label>
+    <input matInput [formControl]="numberControl" placeholder="000 000 000" />
+  </mat-form-field>
+  <mat-error
+    class="error"
+    *ngIf="
+      (numberPrefixControl.invalid || numberControl.invalid) &&
+      (numberPrefixControl.touched || numberControl.touched)
+    "
+    >{{ getError() }}</mat-error
+  >
+  <mat-error
+    class="error"
+    style="color: transparent; visibility: hidden"
+    *ngIf="
+      !(numberPrefixControl.invalid || numberControl.invalid) ||
+      !(numberPrefixControl.touched || numberControl.touched)
+    "
+    >no error</mat-error
+  >
+</div>
