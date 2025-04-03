@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="header-container">
+      <h2 class="header-blue">BRANDSHOP POLITECHNIKI POZNAŃSKIEJ</h2>
+      <div class="header-line"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-8">
+      <div class="text">
+        Politechnika Poznańska prowadzi sprzedaż materiałów promocyjnych za
+        pośrednictwem Działu&nbsp;Informacji&nbsp;i&nbsp;Promocji. W naszej
+        ofercie znajduje się ponad 200 produktów.
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-8">
+      <div class="text">Wybierz kategorię:</div>
+    </div>
+  </div>
+  <div class="row g-3 mb-5">
+    <div class="col-12 col-xl-4 col-md-6" *ngFor="let category of categories">
+      <div class="box" (click)="navigateToCategory(category)">
+        {{ category.name }}
+      </div>
+    </div>
+  </div>
+</div>

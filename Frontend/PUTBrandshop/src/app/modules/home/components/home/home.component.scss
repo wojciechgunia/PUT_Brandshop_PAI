@@ -1,0 +1,16 @@
+.box {
+  aspect-ratio: 7 / 4;
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: white;
+  text-transform: uppercase;
+  padding: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.box:hover {
+  color: var(--accent-color);
+}
