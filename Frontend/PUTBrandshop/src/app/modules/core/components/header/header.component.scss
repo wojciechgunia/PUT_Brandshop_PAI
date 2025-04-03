@@ -1,0 +1,70 @@
+.navbar {
+  background-color: var(--primary-color);
+  min-height: 120px;
+}
+
+.nav-item {
+  .nav-link {
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    font-size: 1rem;
+    color: white;
+    padding: 0, 4px;
+  }
+
+  .nav-link-line {
+    width: 155px;
+    height: 2px;
+    background-color: white;
+    margin-top: 6px;
+  }
+
+  padding: 15px;
+}
+
+.nav-item:hover {
+  .nav-link {
+    color: var(--accent-color);
+  }
+
+  .nav-link-line {
+    background-color: var(--accent-color);
+  }
+}
+
+.navbar-brand img {
+  height: 80px;
+  width: 80px;
+}
+
+.dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+.dropdown-item {
+  cursor: pointer;
+}
+
+.display-initial {
+  display: initial;
+
+  .icon-size {
+    line-height: 30px;
+  }
+
+  .basket-quantity {
+    font: 500 11px roboto;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    top: -18px;
+    right: -14px;
+    background-color: #e97070;
+  }
+}
+
+.dropdown-menu-end {
+  right: 13px;
+  top: 88px;
+}
