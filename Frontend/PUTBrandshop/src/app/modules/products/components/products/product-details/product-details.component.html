@@ -1,0 +1,66 @@
+<ng-container *ngIf="product">
+  <div class="container">
+    <div class="row">
+      <div class="header-container mb-4">
+        <h2 class="header-blue">
+          {{ product.name[0] | uppercase }}{{ product.name.substr(1) }}
+        </h2>
+        <div class="header-line"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-12">
+        <app-carousel
+          [productName]="product.name"
+          [imageUrls]="product.imageUrls"
+        ></app-carousel>
+      </div>
+      <div
+        class="col-md-6 d-flex align-items-center flex-column justify-content-center col-12"
+      >
+        <div class="text-center w-100">
+          <p class="price">Cena: {{ product.price | currency : 'zł/szt' }}</p>
+          <div class="d-flex justify-content-center">
+            <app-quantity-control
+              [formControl]="quantityControl"
+            ></app-quantity-control>
+          </div>
+          <div class="d-flex justify-content-center my-2 w-100">
+            <button
+              class="button-add"
+              mat-raised-button
+              color="primary"
+              (click)="addToBasket()"
+            >
+              Dodaj do koszyka
+            </button>
+          </div>
+        </div>
+        <div class="text-start w-75 mt-4">
+          <p class="product-dsc mb-1">Specyfikacja</p>
+          <table class="table table-bordered">
+            <tbody>
+              <tr *ngFor="let param of parameters | keyvalue">
+                <td class="text-end table-cell">
+                  <span class="prod-param-key">{{ param.key }}</span>
+                </td>
+                <td class="text-start table-cell">{{ param.value }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 mt-3">
+        <p class="product-dsc mb-0">Opis produktu</p>
+        <div class="desc-line mb-4"></div>
+        <div
+          *ngIf="htmlContent"
+          [innerHTML]="htmlContent"
+          class="html-text"
+        ></div>
+      </div>
+    </div>
+  </div>
+</ng-container>

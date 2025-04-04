@@ -1,0 +1,75 @@
+.product-name {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.product-dsc {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--accent-color);
+}
+
+.table-cell {
+  width: 50%;
+}
+
+.prod-param-key {
+  font-weight: 500;
+}
+
+.html-text {
+  overflow-wrap: break-word;
+}
+
+.price {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--text-accent-color);
+}
+
+.button-add {
+  width: min(80%, 250px);
+  aspect-ratio: 12 / 2.5;
+  height: auto;
+  font-size: 1.1rem;
+}
+
+table {
+  border: 0.1px solid black;
+  border-collapse: separate;
+  border-left: 0;
+  border-radius: 5px;
+  border-spacing: 0px;
+}
+
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+th,
+td {
+  padding: 5px 4px 6px 4px;
+  text-align: left;
+  vertical-align: top;
+  border-left: 0.5px solid black;
+}
+
+td {
+  border-top: 0.5px solid black;
+}
+thead:first-child tr:first-child th:first-child,
+tbody:first-child tr:first-child td:first-child {
+  border-radius: 5px 0 0 0;
+}
+thead:last-child tr:last-child th:first-child,
+tbody:last-child tr:last-child td:first-child {
+  border-radius: 0 0 0 5px;
+}
+
+.desc-line {
+  background-color: var(--accent-color);
+  height: 2px;
+  width: 100%;
+}

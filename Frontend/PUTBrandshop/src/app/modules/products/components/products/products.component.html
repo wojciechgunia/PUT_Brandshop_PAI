@@ -1,0 +1,102 @@
+<div class="container">
+  <div class="row">
+    <div class="header-container">
+      <h2 class="header-blue">PRODUKTY</h2>
+      <div class="header-line"></div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="autocomplete-search">
+      <mat-form-field appearance="outline" style="width: 70%">
+        <mat-label>Wyszukaj produkty</mat-label>
+        <input
+          type="text"
+          matInput
+          [formControl]="searchControl"
+          [matAutocomplete]="auto"
+          (keydown.enter)="searchProduct()"
+        />
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option
+            *ngFor="let option of filteredOptions | async"
+            [value]="option.name"
+          >
+            {{ option.name }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="primary"
+        style="
+          height: 56px;
+          margin-left: -4px;
+          margin-bottom: 2px;
+          width: 30%;
+          font-size: 1.2rem;
+        "
+        (click)="searchProduct()"
+      >
+        Wyszukaj
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-10 col-md-6 col-xl-4">
+      <div class="searched-params" style="display: flex; align-items: center">
+        <mat-form-field appearance="outline" style="width: 50%">
+          <mat-label>Sortuj po </mat-label>
+          <mat-select
+            [formControl]="sortControl"
+            (selectionChange)="sortProduct()"
+          >
+            <mat-option value="price">cenie</mat-option>
+            <mat-option value="category">kategorii</mat-option>
+            <mat-option value="name">nazwie</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="width: 50%">
+          <mat-select
+            [formControl]="orderControl"
+            (selectionChange)="sortProduct()"
+          >
+            <mat-option value="asc">rosnąco</mat-option>
+            <mat-option value="desc">malejąco</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-10 col-md-6 col-xl-4">
+      <div class="searched-params" style="display: flex; align-items: center">
+        <mat-form-field appearance="outline" style="width: 100%">
+          <mat-label>Kategoria </mat-label>
+          <mat-select
+            [formControl]="categoryControl"
+            (selectionChange)="sortProduct()"
+          >
+            <mat-option [value]="''">Wybierz kategorię</mat-option>
+            <mat-option
+              [value]="category.shortId"
+              *ngFor="let category of categories"
+              >{{ category.name }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <app-product
+      *ngFor="let product of products"
+      [product]="product"
+      class="col-12 col-md-6 col-xl-4"
+    ></app-product>
+  </div>
+  <mat-paginator
+    *ngIf="!error"
+    [pageSizeOptions]="[15, 30, 45, 60]"
+    [length]="totalCount"
+    showFirstLastButtons
+  ></mat-paginator>
+  <app-alert [message]="error" [alertType]="'warning'"></app-alert>
+</div>

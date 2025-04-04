@@ -1,0 +1,12 @@
+<div class="card border-1" [routerLink]="getProductDetailsUrl()">
+  <div class="card-img-box">
+    <img [src]="product.imageUrl" [alt]="product.name" class="card-img-top" />
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">
+      {{ product.name[0] | uppercase }}{{ product.name.substr(1) }}
+    </h5>
+    <div class="line"></div>
+    <p>{{ product.price | currency : 'zł' }}</p>
+  </div>
+</div>
