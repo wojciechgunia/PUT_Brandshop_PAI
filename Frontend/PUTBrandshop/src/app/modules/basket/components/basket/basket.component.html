@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="header-container mt-5">
+      <h2 class="header-blue">KOSZYK</h2>
+      <div class="header-line mb-3"></div>
+    </div>
+  </div>
+  <div class="row" *ngIf="basketProducts.length === 0">
+    <p style="font-size: 1.2rem">Brak produktów w koszyku.</p>
+  </div>
+  <div class="row" *ngIf="basketProducts.length > 0">
+    <div class="col-md-9">
+      <div class="basket-product" *ngFor="let basketProduct of basketProducts">
+        <app-basket-product
+          (deleteProductUuid)="deleteProduct($event)"
+          [basketProduct]="basketProduct"
+        ></app-basket-product>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="summary-wrapper">
+        <h2 class="text-center summary-heading">Podsumowanie koszyka:</h2>
+        <p class="text-center">Koszt bez dostawy:</p>
+        <p class="text-center">{{ summaryPrice | currency : 'zł' }}</p>
+        <div class="d-flex justify-content-center">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="navigateToCreateOrder()"
+          >
+            Przejdź do zakupu
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

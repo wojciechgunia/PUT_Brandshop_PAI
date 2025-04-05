@@ -1,0 +1,44 @@
+<div class="basket-product">
+  <a
+    [routerLink]="
+      '/produkty/' +
+      basketProduct.name +
+      '-' +
+      basketProduct.createAt.replaceAll('-', '')
+    "
+    class="d-flex"
+    ><div class="basket-product-img-wrapper">
+      <img
+        [src]="basketProduct.imageUrl"
+        [alt]="basketProduct.name"
+        class="basket-product-img"
+      /></div
+  ></a>
+  <div class="basket-product-name">
+    <a
+      [routerLink]="
+        '/produkty/' +
+        basketProduct.name +
+        '-' +
+        basketProduct.createAt.replaceAll('-', '')
+      "
+      class="d-flex text-decoration-none"
+      style="color: var(--accent-color-text)"
+    >
+      {{ basketProduct.name[0] | uppercase }}{{ basketProduct.name.substr(1) }}
+    </a>
+  </div>
+
+  <div class="basket-product-prices pt-4 pb-4">
+    <span>{{ basketProduct.price | currency : 'zł' }}</span>
+    <span> x {{ basketProduct.quantity }}</span>
+    <span> {{ basketProduct.summaryPrice | currency : 'zł' }}</span>
+  </div>
+  <mat-icon
+    class="basket-product-icon"
+    style="color: var(--warn-color)"
+    matTooltip="Usuń produkt z koszyka"
+    (click)="deleteProductFromBasket()"
+    >cancel</mat-icon
+  >
+</div>

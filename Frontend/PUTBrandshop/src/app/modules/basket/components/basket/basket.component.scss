@@ -1,0 +1,18 @@
+.basket-product {
+  margin-bottom: 10px;
+}
+
+.summary-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  border: #dfd0d0 1px solid;
+  border-radius: 8px;
+
+  .summary-heading {
+    font-weight: 500;
+  }
+}
