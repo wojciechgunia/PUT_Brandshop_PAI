@@ -1,0 +1,19 @@
+.form-input mat-form-field,
+button {
+  width: 100%;
+}
+
+.form-button {
+  width: 90%;
+}
+
+.form-input {
+  max-width: 480px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 7px;
+}

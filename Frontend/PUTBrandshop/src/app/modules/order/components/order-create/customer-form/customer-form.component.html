@@ -1,0 +1,47 @@
+<form [formGroup]="customerForm">
+  <div class="form-input justify-content-start">
+    <h3>Wprowadź dane do zamówienia:</h3>
+  </div>
+
+  <div class="form-input">
+    <mat-form-field appearance="outline">
+      <mat-label>Imię</mat-label>
+      <input matInput [formControl]="controls.firstName" />
+      <mat-error *ngIf="controls.firstName.invalid">{{
+        getErrorMessage('customer', controls.firstName)
+      }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-input">
+    <mat-form-field appearance="outline">
+      <mat-label>Nazwisko</mat-label>
+      <input matInput [formControl]="controls.lastName" />
+      <mat-error *ngIf="controls.lastName.invalid">{{
+        getErrorMessage('customer', controls.lastName)
+      }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-input">
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        placeholder="adam@example.com"
+        [formControl]="controls.email"
+      />
+      <mat-error *ngIf="controls.email.invalid">{{
+        getErrorMessage('email', controls.email)
+      }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-input">
+    <!-- <mat-form-field appearance="fill">
+      <mat-label>Telefon</mat-label>
+      <input matInput [formControl]="controls.phone" />
+      <mat-error *ngIf="controls.phone.invalid">{{
+        getErrorMessage('customerphone', controls.phone)
+      }}</mat-error>
+    </mat-form-field> -->
+    <app-phone-control [formControl]="controls.phone"></app-phone-control>
+  </div>
+</form>

@@ -1,0 +1,40 @@
+<form [formGroup]="addressForm">
+  <div class="form-input"><h3>&nbsp;</h3></div>
+
+  <div class="form-input">
+    <mat-form-field appearance="outline">
+      <mat-label>Ulica</mat-label>
+      <input matInput [formControl]="controls.street" />
+      <mat-error *ngIf="controls.street.invalid">{{
+        getErrorMessage('address', controls.street)
+      }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-input">
+    <mat-form-field appearance="outline">
+      <mat-label>Nr</mat-label>
+      <input matInput [formControl]="controls.number" />
+      <mat-error *ngIf="controls.number.invalid">{{
+        getErrorMessage('address', controls.number)
+      }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-input">
+    <mat-form-field appearance="outline">
+      <mat-label>Miasto</mat-label>
+      <input matInput [formControl]="controls.city" />
+      <mat-error *ngIf="controls.city.invalid">{{
+        getErrorMessage('address', controls.city)
+      }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-input">
+    <mat-form-field appearance="outline">
+      <mat-label>Kod pocztowy</mat-label>
+      <input matInput [formControl]="controls.postCode" placeholder="00-000" />
+      <mat-error *ngIf="controls.postCode.invalid">{{
+        getErrorMessage('addresscode', controls.postCode)
+      }}</mat-error>
+    </mat-form-field>
+  </div>
+</form>

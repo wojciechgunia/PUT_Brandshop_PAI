@@ -1,0 +1,14 @@
+<div
+  class="box-container"
+  [style.background-color]="BGColor"
+  [style.color]="Color"
+  (click)="select()"
+>
+  <div class="img-box bg-white p-1" style="border-radius: 3px">
+    <img [src]="imgUrl" [alt]="name" class="img-img" />
+  </div>
+  <div style="height: 50%; margin-bottom: 5px">
+    <h4>{{ name }}</h4>
+    <p *ngIf="price >= 0" class="mb-0">{{ price | currency : 'zł' }}</p>
+  </div>
+</div>

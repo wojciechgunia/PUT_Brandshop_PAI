@@ -1,0 +1,48 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-1 d-none d-xl-block"></div>
+      <div class="col-xl-10 col-12">
+        <div class="header-container mt-5">
+          <h2 class="header-blue">Zamówienie</h2>
+          <div class="header-line mb-3"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-1 d-none d-xl-block"></div>
+      <div class="col-xl-5 col-12">
+        <app-customer-form></app-customer-form>
+      </div>
+
+      <div class="col-xl-5 col-12">
+        <app-address-form></app-address-form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-1 d-none d-xl-block"></div>
+      <div class="col-xl-5 col-12">
+        <app-delivery-form></app-delivery-form>
+      </div>
+      <div class="col-xl-1 d-none d-xl-block"></div>
+      <div class="col-xl-4 col-12">
+        <app-payment-form></app-payment-form>
+      </div>
+    </div>
+    <app-alert
+      *ngIf="errorMsg"
+      [alertType]="'warning'"
+      [message]="errorMsg"
+    ></app-alert>
+    <div class="d-flex justify-content-center button-submit mt-4 mb-5">
+      <button mat-raised-button color="primary" (click)="order()">
+        <mat-spinner
+          *ngIf="loading as load; else notLoad"
+          class="spinner"
+          color="accent"
+        ></mat-spinner>
+        <ng-template #notLoad>Kupuję i płacę</ng-template>
+      </button>
+    </div>
+  </div>
+</section>

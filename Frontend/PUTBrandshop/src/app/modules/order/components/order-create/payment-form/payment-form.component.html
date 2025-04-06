@@ -1,0 +1,22 @@
+<form [formGroup]="paymentForm" class="d-flex flex-wrap w-100">
+  <div class="form-input justify-content-center w-100 pt-5 pt-xl-0">
+    <h3>Wybierz opcję wysyłki:</h3>
+  </div>
+
+  <div class="form-input d-flex">
+    <div *ngFor="let payment of payments" style="width: 32%; margin: 10px">
+      <app-select-box
+        [selected]="selected"
+        [name]="payment.name"
+        [imgUrl]="payment.image_url"
+        [uid]="payment.uuid"
+        (selecting)="select($event)"
+      ></app-select-box>
+    </div>
+  </div>
+  <app-alert
+    *ngIf="error"
+    [message]="error"
+    [alertType]="'warning'"
+  ></app-alert>
+</form>

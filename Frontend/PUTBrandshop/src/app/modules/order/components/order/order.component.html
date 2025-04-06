@@ -1,0 +1,28 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+<section *ngIf="orders.length > 0">
+  <h2>Lista zamówień:</h2>
+  <mat-list>
+    <mat-divider></mat-divider>
+    <ng-container *ngFor="let order of orders">
+      <div
+        class="order-list-item pb-2 pt-3"
+        style="cursor: pointer"
+        (click)="navigateToDetails(order.uuid)"
+      >
+        <span>Nr zamówienia: {{ order.orders }}</span>
+        <span>Status: {{ changeStatusName(order.status) }}</span>
+        <span>Sposób dostawy: {{ order.deliver.name }}</span>
+      </div>
+      <mat-divider></mat-divider>
+    </ng-container>
+  </mat-list>
+</section>
+
+<p *ngIf="!errorMsg && orders.length === 0">Aktualnie brak zamówień</p>
+
+<app-alert
+  *ngIf="errorMsg"
+  [message]="errorMsg"
+  [alertType]="'warning'"
+></app-alert>

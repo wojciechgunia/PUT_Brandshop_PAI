@@ -1,0 +1,26 @@
+.img-box {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.img-img {
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.box-container {
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  aspect-ratio: 2 / 3;
+}
+
+p {
+  font-size: 1.1rem;
+}
