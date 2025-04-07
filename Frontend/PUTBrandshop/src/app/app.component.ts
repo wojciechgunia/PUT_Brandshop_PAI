@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BasketService } from './modules/core/services/basket.service';
 import { AppState } from './store/app.reducer';
 import { Store } from '@ngrx/store';
 import { NotifierService } from 'angular-notifier';
@@ -16,10 +17,16 @@ export class AppComponent {
   constructor(
     private notifierService: NotifierService,
     private store: Store<AppState>,
+    private basketService: BasketService,
     private overlay: OverlayContainer
   ) {}
 
   ngOnInit(): void {
     this.store.dispatch(AuthActions.autoLogin());
+    this.basketService.getBasketProducts().subscribe({
+      error: () => {
+        //
+      },
+    });
   }
 }

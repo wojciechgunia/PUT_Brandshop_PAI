@@ -14,8 +14,6 @@ import localePL from '@angular/common/locales/pl';
 import { registerLocaleData } from '@angular/common';
 import { LOCALE_ID, NgModule } from '@angular/core';
 
-registerLocaleData(localePL);
-
 const customNotifier: NotifierOptions = {
   position: {
     horizontal: {
@@ -31,6 +29,7 @@ const customNotifier: NotifierOptions = {
   theme: 'material',
 };
 
+registerLocaleData(localePL);
 @NgModule({
   declarations: [AppComponent],
   imports: [
