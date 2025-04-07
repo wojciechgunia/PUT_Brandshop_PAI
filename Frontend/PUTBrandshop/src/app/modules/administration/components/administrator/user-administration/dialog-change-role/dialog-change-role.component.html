@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Zmień uprawnienia</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Zmień poziom uprawnień:</mat-label>
+    <mat-select [value]="data.role" [formControl]="roleControl">
+      <mat-option value="ADMIN">ADMIN</mat-option>
+      <mat-option value="USER">USER</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close [mat-dialog-close]="">Anuluj</button>
+  <button
+    mat-button
+    mat-dialog-close
+    cdkFocusInitial
+    [mat-dialog-close]="roleControl.value"
+  >
+    Zatwierdź
+  </button>
+</div>

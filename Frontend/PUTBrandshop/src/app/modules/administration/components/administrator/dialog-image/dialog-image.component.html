@@ -1,0 +1,53 @@
+<h1 mat-dialog-title>Multimedia</h1>
+<div mat-dialog-content class="d-flex flex-wrap justify-content-around">
+  <div style="width: 100%">
+    <mat-paginator
+      [pageSizeOptions]="[15, 30, 45, 60]"
+      [length]="totalCount"
+      showFirstLastButtons
+    >
+    </mat-paginator>
+  </div>
+  <div
+    class="card d-flex justify-content-center align-items-center"
+    (click)="addPhoto()"
+  >
+    <mat-icon color="primary" style="font-size: 5rem; width: auto; height: auto"
+      >add_circle_outline</mat-icon
+    >
+  </div>
+  <input
+    type="file"
+    style="width: 0px; height: 0px"
+    class="d-none"
+    id="imageInput"
+    (change)="onFileSelected($event)"
+  />
+  <div
+    class="card"
+    *ngFor="let image of images"
+    [class.selected]="image === selectedImage"
+    (click)="selectImage(image)"
+  >
+    <img [src]="image.url" alt="picture" />
+  </div>
+  <!-- [pageSizeOptions]="[15, 30, 45, 60]" -->
+  <div style="width: 100%">
+    <app-alert
+      *ngIf="error"
+      [message]="error"
+      [alertType]="'warning'"
+    ></app-alert>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close [mat-dialog-close]="">Anuluj</button>
+  <button
+    mat-button
+    mat-dialog-close
+    cdkFocusInitial
+    [mat-dialog-close]="selectedImage"
+  >
+    Dodaj zdjęcie
+  </button>
+</div>

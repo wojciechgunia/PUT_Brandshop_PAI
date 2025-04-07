@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>Zmień status zamówienia</h1>
+<div mat-dialog-content>
+  <mat-form-field style="width: 95%">
+    <mat-label>Zmień status:</mat-label>
+    <mat-select [value]="data.status" [formControl]="statusControl">
+      <mat-option value="">Wybierz status</mat-option>
+      <mat-option value="PENDING">Zamówienie złożone</mat-option>
+      <mat-option value="WAITING_FOR_CONFIRMATION"
+        >Oczekuje na potwierdzenie</mat-option
+      >
+      <mat-option value="COMPLETED">Zamówienie złożone</mat-option>
+      <mat-option value="PAID">Zamówienie opłacone</mat-option>
+      <mat-option value="READY">Gotowe do odbioru</mat-option>
+      <mat-option value="CANCELED">Zamówienie anulowane</mat-option>
+      <mat-option value="SENT">Zamówienie wysłane</mat-option>
+      <mat-option value="DELIVERED">Zamówienie zrealizowane</mat-option>
+      <mat-option value="RETURNED">Zamówienie zwrócone</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close [mat-dialog-close]="">Anuluj</button>
+  <button
+    mat-button
+    mat-dialog-close
+    cdkFocusInitial
+    [mat-dialog-close]="statusControl.value"
+  >
+    Zatwierdź
+  </button>
+</div>

@@ -1,0 +1,19 @@
+<div class="d-flex">
+  <div class="image-wrapper" *ngFor="let image of imageUrls; let i = index">
+    <img
+      [src]="image.url"
+      alt="Zdjęcie [{{ i }}]"
+      class="img-fluid main-img"
+    /><br />
+    <div class="button-menu">
+      <button
+        mat-raised-button
+        color="warn"
+        style="width: 1.2rem"
+        (click)="deleteImage(image.url)"
+      >
+        Usuń
+      </button>
+    </div>
+  </div>
+</div>

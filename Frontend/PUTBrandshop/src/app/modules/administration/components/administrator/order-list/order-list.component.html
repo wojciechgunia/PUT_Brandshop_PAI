@@ -1,0 +1,129 @@
+<div class="mat-elevation-z8" style="overflow-x: auto">
+  <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
+    <ng-container matColumnDef="orders">
+      <th mat-header-cell *matHeaderCellDef>Numer zamówienia</th>
+      <td mat-cell *matCellDef="let element">{{ element.orders }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="client">
+      <th mat-header-cell *matHeaderCellDef>Nazwa użytkownika</th>
+      <td mat-cell *matCellDef="let element">{{ element.client }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let element">
+        {{ changeStatusName(element.status) }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="payment.name">
+      <th mat-header-cell *matHeaderCellDef>Rodzaj płatności</th>
+      <td mat-cell *matCellDef="let element">{{ element.payment.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="deliver.name">
+      <th mat-header-cell *matHeaderCellDef>Sposób dostawy</th>
+      <td mat-cell *matCellDef="let element">{{ element.deliver.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="expand">
+      <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          aria-label="expand row"
+          (click)="
+            expandedElement = expandedElement === element ? null : element;
+            $event.stopPropagation()
+          "
+        >
+          <mat-icon *ngIf="expandedElement !== element"
+            >keyboard_arrow_down</mat-icon
+          >
+          <mat-icon *ngIf="expandedElement === element"
+            >keyboard_arrow_up</mat-icon
+          >
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+    <ng-container matColumnDef="expandedDetail">
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [attr.colspan]="displayedColumnsExpanded.length"
+      >
+        <div
+          class="example-element-detail"
+          [@detailExpand]="
+            element == expandedElement ? 'expanded' : 'collapsed'
+          "
+        >
+          <p class="mt-4">Numer zamówienia: {{ element.orders }}</p>
+          <p class="d-flex align-items-center">
+            Status zamówienia:&nbsp;&nbsp;<b>{{
+              changeStatusName(element.status)
+            }}</b>
+            <button
+              mat-icon-button
+              color="primary"
+              style="margin-left: 5px; z-index: 1001"
+              (click)="
+                changeStatus(element.uuid, changeStatusName(element.status))
+              "
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+          </p>
+          <p>Kwota zamówienia: {{ element.summaryPrice | currency : 'zł' }}</p>
+          <br />
+          <div class="row my-2" *ngIf="element.customerDetails as customer">
+            <div class="col-md-6" *ngIf="element.address as address">
+              <p><b>Adres dostawy:</b></p>
+              <p>{{ customer.firstName }} {{ customer.lastName }}</p>
+              <p>{{ address.street }} {{ address.number }}</p>
+              <p>{{ address.city }}, {{ address.postCode }}</p>
+            </div>
+            <div class="col-md-6">
+              <p><b>Sposób dostawy:</b></p>
+              <p>{{ element.deliver.name }}</p>
+              <p><b>Rodzaj płatności:</b></p>
+              <p>{{ element.payment.name }}</p>
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-10">
+              <p><b>Produkty:</b></p>
+              <div *ngFor="let product of element.items">
+                <app-order-product
+                  [basketProduct]="product"
+                ></app-order-product>
+              </div>
+            </div>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsExpanded"></tr>
+    <tr
+      mat-row
+      *matRowDef="let element; columns: displayedColumnsExpanded"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element"
+    ></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: ['expandedDetail']"
+      class="example-detail-row"
+    ></tr>
+  </table>
+  <mat-paginator
+    [pageSizeOptions]="[15, 30, 45, 60]"
+    aria-label="Wybierz ilość zamówień"
+  ></mat-paginator>
+</div>

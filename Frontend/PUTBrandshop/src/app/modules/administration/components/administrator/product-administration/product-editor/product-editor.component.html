@@ -1,0 +1,166 @@
+<div class="row mt-4">
+  <app-uploaded-images
+    *ngIf="imageUrls.length > 0"
+    [imageUrls]="imageUrls"
+    (deleteImageUrl)="setActiveImages($event)"
+  ></app-uploaded-images>
+  <div class="d-flex justify-content-end">
+    <button mat-raised-button color="primary" (click)="addFile()">
+      Dodaj zdjęcie
+    </button>
+  </div>
+  <app-alert
+    *ngIf="error"
+    [message]="error"
+    [alertType]="'warning'"
+  ></app-alert>
+  <hr class="mt-5" />
+</div>
+
+<form [formGroup]="addProductForm" (ngSubmit)="addProduct()" class="mt-5">
+  <div class="row">
+    <div class="col-12 col-md-5">
+      <div class="form-input2">
+        <mat-form-field appearance="outline">
+          <mat-label>Nazwa produktu</mat-label>
+          <input matInput [formControl]="controls.name" />
+          <mat-error *ngIf="controls.name.invalid">{{
+            getErrorMessage('productform', controls.name)
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-12 col-md-7">
+      <div class="form-input2">
+        <mat-form-field appearance="outline">
+          <mat-label>Krótki opis</mat-label>
+          <textarea matInput [formControl]="controls.mainDesc"></textarea>
+          <mat-error *ngIf="controls.mainDesc.invalid">{{
+            getErrorMessage('productform', controls.mainDesc)
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <angular-editor
+      [formControl]="controls.descHtml"
+      [config]="config"
+      style="width: 100%; padding: 10px"
+    ></angular-editor>
+  </div>
+  <div class="row">
+    <div class="col-md-1 d-md-block d-none"></div>
+    <div class="col-12 col-md-4">
+      <div class="form-input">
+        <mat-form-field appearance="outline">
+          <mat-label>Cena</mat-label>
+          <input
+            matInput
+            [formControl]="controls.price"
+            type="number"
+            style="width: calc(100% - 18px)"
+          />zł
+          <mat-error *ngIf="controls.price.invalid">{{
+            getErrorMessage('productform', controls.price)
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-2 d-md-block d-none"></div>
+    <div class="col-12 col-md-4">
+      <div class="form-input">
+        <mat-form-field appearance="outline">
+          <mat-label>Kategoria</mat-label>
+          <mat-select [formControl]="controls.category">
+            <mat-option value="">-</mat-option>
+            <mat-option
+              *ngFor="let category of categories | async"
+              [value]="category.shortId"
+              >{{ category.name }}</mat-option
+            >
+          </mat-select>
+          <mat-error *ngIf="controls.category.invalid">{{
+            getErrorMessage('productform', controls.category)
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <hr class="mt-5 w-100" />
+  <div
+    [formArrayName]="'parameters'"
+    *ngIf="parameters.controls.length > 0"
+    style="width: 80% mt-5"
+  >
+    <p>Parametry:</p>
+    <div
+      *ngFor="let param of parameters.controls; let i = index"
+      [formGroupName]="i"
+    >
+      <div class="form-control-wrapper">
+        <div class="form-array-input">
+          <mat-form-field appearance="outline">
+            <mat-label>Nazwa parametru</mat-label>
+            <input matInput [formControl]="parameters.at(i).controls.key" />
+            <mat-error *ngIf="parameters.at(i).controls.key.invalid">{{
+              getErrorMessage('productform', parameters.at(i).controls.key)
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-array-input">
+          <mat-form-field appearance="outline">
+            <mat-label>Wartość</mat-label>
+            <input matInput [formControl]="parameters.at(i).controls.value" />
+            <mat-error *ngIf="parameters.at(i).controls.value.invalid">{{
+              getErrorMessage('productform', parameters.at(i).controls.value)
+            }}</mat-error>
+            <mat-icon
+              matSuffix
+              matTooltip="Usuń parametr"
+              (click)="deleteParameter(i)"
+              >delete</mat-icon
+            >
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center w-100">
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      (click)="addParameter()"
+      class="w-50"
+    >
+      Dodaj parametr
+    </button>
+  </div>
+  <hr class="mt-5 w-100" />
+  <div class="form-input2 mt-4 mb-5 w-100">
+    <div class="form-button">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="p-4"
+        [disabled]="addProductForm.invalid"
+      >
+        {{ btnName }}
+      </button>
+    </div>
+  </div>
+</form>
+<app-alert
+  *ngIf="error2"
+  [message]="error2"
+  [alertType]="'warning'"
+></app-alert>
+<app-alert
+  *ngIf="success"
+  [message]="success"
+  [alertType]="'success'"
+></app-alert>
