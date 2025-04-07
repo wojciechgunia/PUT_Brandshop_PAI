@@ -41,7 +41,7 @@
 
 ###
 
-<p align="left">- Zainstaluj serwer bazodanowy PostgreSQL i dodaj bazę danych: nazwa: brandput23, username: postgres, password: postgres<br>- Otwórz folder backend/PUT_Brandshop w środowisku Intellij Idea<br>- Uruchom serwisy Eureka oraz ApiGateway i poczekaj na ich uruchomienie, następnie uruchom pozostałe serwisy<br>- Backend jest gotowy do działania</p>
+<p align="left">- Zainstaluj serwer bazodanowy PostgreSQL i dodaj bazę danych: nazwa: brandput25, username: postgres, password: postgres<br>- Otwórz folder backend/PUT_Brandshop w środowisku Intellij Idea<br>- Uruchom serwisy Eureka oraz ApiGateway i poczekaj na ich uruchomienie, następnie uruchom pozostałe serwisy<br>- Backend jest gotowy do działania</p>
 
 ###
 
